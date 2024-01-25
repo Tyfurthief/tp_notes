@@ -46,6 +46,11 @@ code {
   align-items: center;
 }
 
+.Notes-list {
+  padding-inline-start: 0;
+  list-style-type: none;
+}
+
 .Note-link {
   display: flex;
   flex-direction: column;
