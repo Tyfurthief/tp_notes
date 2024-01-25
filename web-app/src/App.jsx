@@ -18,7 +18,7 @@ function App() {
   const [notes, setNotes] = useState(null);
 
   // déclaration de la variable qui stocke la note actuelle
-  const [currentNote, setCurrentNote] = useState(null);
+  // const [currentNote, setCurrentNote] = useState(null);
 
   // déclaration de la variable pour le loading
   const [loading, setLoading] = useState(false);
@@ -30,7 +30,7 @@ function App() {
     const data = await response.json(); //Récupération du contenu du json (donc des notes) dans la variable data
     setNotes(data.reverse()); //Affectation du contenu de la variable data dans la variable notes, dans l'ordre inversé avec reverse()
     setLoading(false);
-  }
+  };
 
   // function getCurrentNote(){
   //   // (notes.filter(element => console.log(element.id,Number.parseInt(id) )))
@@ -54,12 +54,12 @@ function App() {
     const response = await fetch("/notes", requestOptions); // Envoi de la requête avec les options défini précédemment
 
     fetchNotes(); // On appelle la fonction fetchNotes pour rafraichir l'affichage des notes en même temps (presque, en vrai juste après) que la création d'une nouvelle
-  }
+  };
 
   // Définition de la fonction de sauvegarde d'une note
   async function saveNote(id, title, content){
     setLoading(true);
-    const editNote = { // Définition du modèle affiché par défaut lors de la création d'une note
+    const editNote = { 
       title: title,
       content: content,
     };
@@ -71,16 +71,27 @@ function App() {
       body: JSON.stringify(editNote),
     };
 
-    const response = await fetch("http://localhost:4000/notes/"+id, requestOptions); // Envoi de la requête avec les options défini précédemment
+    const response = await fetch("http://localhost:4000/notes/"+id, requestOptions); // Envoi de la requête avec les options définies précédemment
 
     fetchNotes();
     toast.success("Sauvegarde effectuée.",{position:"bottom-center", autoClose:1500}); // Message de confirmation de save via ToastContainer
-  }
+  };
 
   // Définition de la fonction de suppression d'une note
-  function deleteNote(){
-    
-  }
+  async function deleteNote(id){
+    setLoading(true);
+
+    const requestOptions = {
+      // Définition des options de la requête
+      method: "DELETE", // Pour définir le type de la requête (DELETE = Suppression)
+      headers: { "Content-Type": "application/json" },
+    };
+
+    const response = await fetch("http://localhost:4000/notes/"+id, requestOptions); // Envoi de la requête avec les options définies précédemment
+
+    fetchNotes();  
+    toast.success("Suppression effectuée.",{position:"bottom-center", autoClose:1500}); // Message de confirmation de la suppression via ToastContainer
+    };
 
   useEffect(function () {
     // Définition de l'action qui va être réalisée au chargement de la page
@@ -114,7 +125,7 @@ function App() {
         <main className="Main">
           <Routes>
           <Route path="/" element="Sélectionner une note" />
-          <Route path="/notes/:id" element={<Note notes={notes} saveNote={saveNote} />} />
+          <Route path="/notes/:id" element={<Note notes={notes} saveNote={saveNote} deleteNote={deleteNote} />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
         </main>

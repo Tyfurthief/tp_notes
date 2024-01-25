@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import "./Note.css";
 import { useEffect, useState } from "react";
 
-function Note({notes,saveNote}) {
+function Note({notes,saveNote,deleteNote}) {
   const [thisNote, setThisNote] = useState(null);
   
   // Récupération de l'id dans l'url avec useParams
@@ -24,7 +24,7 @@ function Note({notes,saveNote}) {
       <textarea className="Note-editable Note-content" value={content} onChange={(e) => setContent(e.target.value)}/>
       <div className="Note-actions">
         <button
-          className="Button-create-note"
+          className="Button-save-note"
           /* Appel de la fonction saveNote au clic du bouton */
           type="button"
           onClick={function(){
@@ -33,6 +33,17 @@ function Note({notes,saveNote}) {
           }
         >
           Enregistrer
+        </button>
+        <button
+          className="Button-delete-note"
+          /* Appel de la fonction deleteNote au clic du bouton */
+          type="button"
+          onClick={function(){
+              deleteNote(id)
+            } 
+          }
+        >
+          Supprimer
         </button>
       </div>  
     </form>
