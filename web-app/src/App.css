@@ -71,9 +71,13 @@ code {
 }
 
 .Button-create-note {
-  width: 40px;
+  width: 200px;
   height: 40px;
+  margin-left: 20px;
+  margin-top: 5px;
+  border-radius: 10px;
   font-size: 24px;
+  color: white;
   background-color: rgb(44, 51, 56);
   text-align: center;
 }

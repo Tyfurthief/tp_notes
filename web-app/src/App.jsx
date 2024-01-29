@@ -8,6 +8,8 @@ import "./App.css";
 import Note from "./components/Note";
 import Loader from "./components/Loader";
 
+// import 'sweetalert2/src/sweetalert2.scss'
+
 // CYCLE DE VIE du composant App :
 // 1. rendu initial (avec les valeurs d'état initiales)
 // 2. exécution de l'action du 'useEffect' : mise à jour de l'état
@@ -74,7 +76,7 @@ function App() {
     const response = await fetch("http://localhost:4000/notes/"+id, requestOptions); // Envoi de la requête avec les options définies précédemment
 
     fetchNotes();
-    toast.success("Sauvegarde effectuée.",{position:"bottom-center", autoClose:1500}); // Message de confirmation de save via ToastContainer
+    toast.success("Sauvegarde effectuée.",{position:"bottom-center", autoClose:1500, hideProgressBar:true }); // Message de confirmation de save via ToastContainer
   };
 
   // Définition de la fonction de suppression d'une note
@@ -90,7 +92,7 @@ function App() {
     const response = await fetch("http://localhost:4000/notes/"+id, requestOptions); // Envoi de la requête avec les options définies précédemment
 
     fetchNotes();  
-    toast.success("Suppression effectuée.",{position:"bottom-center", autoClose:1500}); // Message de confirmation de la suppression via ToastContainer
+    toast.success("Suppression effectuée.",{position:"bottom-center", autoClose:1500, hideProgressBar:true }); // Message de confirmation de la suppression via ToastContainer
     };
 
   useEffect(function () {
@@ -104,7 +106,7 @@ function App() {
       <aside className="Side">
         <div>
           <button className="Button-create-note" onClick={addNote /* Appel de la fonction addNote au clic du bouton */}>
-            +
+            Nouvelle note
           </button>
           {loading /* SI loading est true */ ? <Loader/> /* ALORS le bouton loading s'affiche en appelant le composant GifLoading*/
             : null /* SINON on ne l'affiche pas */ }

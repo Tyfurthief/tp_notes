@@ -1,6 +1,9 @@
 import { useParams } from "react-router-dom";
 import "./Note.css";
 import { useEffect, useState } from "react";
+import Swal from 'sweetalert2'
+
+
 
 function Note({notes,saveNote,deleteNote}) {
   const [thisNote, setThisNote] = useState(null);
@@ -39,7 +42,22 @@ function Note({notes,saveNote,deleteNote}) {
           /* Appel de la fonction deleteNote au clic du bouton */
           type="button"
           onClick={function(){
-              deleteNote(id)
+            Swal.fire({
+              title: "Supprimer la note ?",
+              text: "Cette action est irréversible.",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonText: "C'est un oui !",
+              confirmButtonColor: "#218838",
+              cancelButtonText: "Jamais !",
+              cancelButtonColor: "#c82333",
+              cancelBorberButtonColor:"#bd2130",
+              focusCancel: true,
+            }).then((result) => {
+              if (result.isConfirmed) {
+                deleteNote(id)
+              }
+            });
             } 
           }
         >
