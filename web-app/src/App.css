@@ -46,9 +46,25 @@ code {
   align-items: center;
 }
 
+.Note-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
 .Notes-list {
   padding-inline-start: 0;
   list-style-type: none;
+  overflow: auto;
+  height: 85vh;
+}
+
+.Notes-list li {
+  width: 100%;
+}
+
+.Notes-Lists {
+  display: flex;
+  justify-content: space-between;
 }
 
 .Note-link {
@@ -63,6 +79,7 @@ code {
 
 .Note-link.active {
   background-color: darkslategrey;
+  width: 100%;
 }
 
 .Note-link-lastUpdatedAt {
@@ -70,16 +87,90 @@ code {
   color: darkgrey;
 }
 
+.Header-Create-Note {
+  display: flex;
+  margin: 10px;
+}
+
 .Button-create-note {
   width: 200px;
   height: 40px;
-  margin-left: 20px;
-  margin-top: 5px;
   border-radius: 10px;
   font-size: 24px;
   color: white;
   background-color: rgb(44, 51, 56);
   text-align: center;
+}
+
+.Button-delete-note,
+.Button-save-note,
+.Button-Search-Note {
+  padding: 6px 14px;
+  margin-left: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  border-radius: 6px;
+  border: none;
+  background: #6E6D70;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+  color: #DFDEDF;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+
+}
+
+.Button-delete-note:focus,
+.Button-save-note:focus,
+.Button-Search-Note:focus {
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  outline: 0;
+}
+
+.Form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.Note-editable {
+  width: 100%;
+  border: none;
+  padding: 16px;
+  background: transparent;
+  color: inherit;
+}
+
+.Note-editable:focus-visible {
+  outline: 0;
+  box-shadow: inset 0px 0px 0px 2px white;
+}
+
+.Note-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.Note-content {
+  flex-grow: 1;
+  resize: none;
+  font-family: inherit;
+}
+
+.Note-actions {
+  font-size: 14px;
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.User {
+  padding: 8px 10px 10px 10px;
+  height: 100%;
+  color: darkgrey;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  background-color: darkslategrey;
 }
 
 .Temperature {
